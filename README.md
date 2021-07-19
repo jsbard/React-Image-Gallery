@@ -1,5 +1,19 @@
-# Getting Started with Create React App
+# View Live At: <a href="https://andrewhickman.me/imagegallery" target="_blank">andrewhickman.me/imagegallery</a>
 
+---
+
+### Important:
+To run locally, you will need your own <a href="https://www.flickr.com/services/api/misc.api_keys.html" target="_blank">Flickr API Key</a>
+<br>Create a config.js file in the project root and add the following JavaScript:
+<pre>
+const apiKey = 'YOUR_API_KEY';
+export default apiKey;
+</pre>
+Launch the app by running <code>npm start</code>
+<br>
+<br>
+---
+---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
