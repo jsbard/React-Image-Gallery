@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Redirect} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import axios from "axios";
 import apiKey from "./config";
 import Search from "./components/Search";
@@ -44,10 +44,14 @@ class App extends Component {
                 <div className="App">
                     <Search/>
                     <Nav setPhotos={this.setCurrentPhotos} />
-                    <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />
 
-                    <Route path="/" render={() => <Redirect to="/skydivers" />} />
-                </div>
+                    <Switch>
+                        <Route path="/" render={() => <Redirect to="/skydivers" />} />
+                        <Route path="/skydivers" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                        <Route path="/desierto" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                        <Route path="/お寺" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                    </Switch>
+                    </div>
             </BrowserRouter>
         );
     }
