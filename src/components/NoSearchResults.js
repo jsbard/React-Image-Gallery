@@ -1,8 +1,13 @@
 import React from "react";
 
-function NoSearchResults(props) {
+function NoSearchResults() {
+    const gallery = document.querySelector(".photo-container");
+    if (gallery) {
+        gallery.style.display = "none";
+    }
+
     return (
-        <h1>No Images Found For {props.tag}</h1>
+        <h1 className="no-results">No Images Found</h1>
     )
 }
 

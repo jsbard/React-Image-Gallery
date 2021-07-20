@@ -114,6 +114,11 @@ input {
   width: 100%;
 }
 
+.no-results{
+  color: #FDF8EC;
+  letter-spacing: 0.05em;
+}
+
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;

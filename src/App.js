@@ -51,10 +51,7 @@ class App extends Component {
             )
             .then(() => {
                 if (this.state.photoUrls.length === 0) {
-                    this.props.history.push("no-search-results");
-                    this.setState({
-                        tag: "Sorry, no results found"
-                    })
+                    this.props.history.push("/no-search-results");
                 }
             });
     }
@@ -82,8 +79,8 @@ class App extends Component {
                     <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls}/>
                     <Switch>
                         <Route exact path="/" render={() => <Redirect to="/skydivers"/>}/>
-                        <Route path="/no-search-results" render={() => <NoSearchResults tag={this.state.tag}/>}/>
-                        <Route render={() => NotFound}/>
+                        <Route path="/no-search-results" component={() => <NoSearchResults />}/>
+                        <Route render={() => {<NotFound />}}/>
                     </Switch>
                 </div>
             );
