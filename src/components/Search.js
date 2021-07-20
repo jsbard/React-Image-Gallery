@@ -2,15 +2,21 @@ import React, {Component} from "react";
 
 class Search extends Component {
 
-    // onSubmit = (e) => {
-    //     e.preventDefault();
-    //     this.props.handleSubmit(this.input.current.value);
-    //     this.input.current.value = "";
-    // }
+    constructor(){
+        super();
+        this.input = React.createRef();
+    }
+
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleSubmit(this.input.current.value);
+        this.input.current.value = "";
+    }
 
     render(){
         return(
-            <form className="search-form">
+            <form className="search-form" onSubmit={this.onSubmit}>
                 <input type="search" name="search" ref={this.input} placeholder="Search for images" required/>
                 <button type="submit" className="search-button">
                     <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">

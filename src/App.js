@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Redirect, withRouter} from "react-router-dom";
+import {Route, Redirect, withRouter, useHistory} from "react-router-dom";
 import axios from "axios";
 import apiKey from "./config";
 import Search from "./components/Search";
@@ -43,10 +43,16 @@ class App extends Component {
             )
     }
 
+    handleSearch = (tag) => {
+        const path = `/${tag}`;
+        this.getPhotos(tag);
+        this.props.history.push(path);
+    };
+
     render() {
         return (
                 <div className="App">
-                    <Search/>
+                    <Search handleSubmit={this.handleSearch} />
                     <Nav currentTag={this.state.tag} setPhotos={this.getPhotos} />
                     <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />
 
