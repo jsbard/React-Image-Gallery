@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Redirect} from "react-router-dom";
+import {Route, Redirect, withRouter} from "react-router-dom";
 import axios from "axios";
 import apiKey from "./config";
 import Search from "./components/Search";
@@ -18,14 +18,11 @@ class App extends Component {
         this.getPhotos("skydivers");
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.tag !== prevState.tag && prevState !== "") {
-
-            window.onpopstate = e => {
-                e.preventDefault();
-                this.getPhotos(prevState.tag);
-            }
+    shouldComponentUpdate(prevProps, prevState, snapshot) {
+        if (this.props.location.pathname !== prevProps.location.pathname) {
+            this.getPhotos(prevProps.location.pathname.substring(1));
         }
+        return true;
     }
 
 
@@ -36,6 +33,7 @@ class App extends Component {
             .then(data => data.map(photoData => {
                 let url = `https://live.staticflickr.com/${photoData.server}/${photoData.id}_${photoData.secret}.jpg`;
                 urls.push(url);
+                return true;
             }))
             .then(data =>
                 this.setState({
@@ -58,4 +56,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);
