@@ -50,7 +50,7 @@ class App extends Component {
                 })
             )
             .then(() => {
-                if (this.state.photoUrls.length === 0){
+                if (this.state.photoUrls.length === 0) {
                     this.props.history.push("no-search-results");
                     this.setState({
                         tag: "Sorry, no results found"
@@ -66,7 +66,7 @@ class App extends Component {
     };
 
     render() {
-        if (this.state.tag === ""){
+        if (this.state.tag === "") {
             return (
                 <div className="App">
                     <Search handleSubmit={this.handleSearch}/>
@@ -83,7 +83,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" render={() => <Redirect to="/skydivers"/>}/>
                         <Route path="/no-search-results" render={() => <NoSearchResults tag={this.state.tag}/>}/>
-                        <Route component={NotFound}/>
+                        <Route render={() => NotFound}/>
                     </Switch>
                 </div>
             );
