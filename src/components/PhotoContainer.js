@@ -10,8 +10,8 @@ class PhotoContainer extends Component {
                 <ul>
                     {
                         this.props.urls.map(url => (
-                            <li>
-                                <img src={url} alt="" />
+                            <li key={url.key}>
+                                <img src={url.url} alt="" />
                             </li>
                             )
                         )
