@@ -14,14 +14,12 @@ class App extends Component {
         photoUrls: []
     }
 
-
     componentDidMount() {
         this.getPhotos("skydivers");
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.tag !== prevState.tag && prevState !== "") {
-            this.getPhotos(this.state.tag);
 
             window.onpopstate = e => {
                 e.preventDefault();
@@ -49,7 +47,6 @@ class App extends Component {
 
     render() {
         return (
-            <BrowserRouter>
                 <div className="App">
                     <Search/>
                     <Nav currentTag={this.state.tag} setPhotos={this.getPhotos} />
@@ -57,7 +54,6 @@ class App extends Component {
 
                     <Route path="/" render={() => <Redirect to="/skydivers" />} />
                 </div>
-            </BrowserRouter>
         );
     }
 }
