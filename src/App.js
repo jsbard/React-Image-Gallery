@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Redirect, withRouter, Switch} from "react-router-dom";
+import {Route, withRouter, Switch} from "react-router-dom";
 import axios from "axios";
 import apiKey from "./config";
 import Search from "./components/Search";
