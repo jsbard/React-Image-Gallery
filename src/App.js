@@ -31,7 +31,10 @@ class App extends Component {
 
     getPhotos = (tag) => {
         let urls = [];
-        this.state.tag = "";
+        this.setState({
+            tag: "",
+            photoUrls: []
+        });
         axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&format=json&nojsoncallback=1`)
             .then(res => res.data.photos.photo)
             .then(data => data.map(photoData => {
@@ -66,21 +69,30 @@ class App extends Component {
         if (this.state.tag === "") {
             return (
                 <div className="App">
-                    <Search handleSubmit={this.handleSearch}/>
-                    <Nav currentTag={this.state.tag} setPhotos={this.getPhotos}/>
+                    <Search handleSubmit={this.handleSearch} />
+                    <Nav currentTag={this.state.tag} setPhotos={this.getPhotos} />
                     <Loader />
                 </div>
             )
         } else {
             return (
                 <div className="App">
-                    <Search handleSubmit={this.handleSearch}/>
-                    <Nav currentTag={this.state.tag} setPhotos={this.getPhotos}/>
-                    <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls}/>
+                    <Search handleSubmit={this.handleSearch} />
+                    <Nav currentTag={this.state.tag} setPhotos={this.getPhotos} />
                     <Switch>
-                        <Route exact path="/" render={() => <Redirect to="/skydivers"/>}/>
+                        <Route exact path="/" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                        <Route path="/skydivers" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                        <Route path="/desierto" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
+                        <Route path="/お寺" render={() => <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />} />
                         <Route path="/no-search-results" component={() => <NoSearchResults />}/>
-                        <Route render={() => {<NotFound />}}/>
+                        <Route path="/" render={() => {
+                            if (this.state.tag === "skydivers") {
+                                return <NotFound />
+                            } else {
+                                return <PhotoContainer tag={this.state.tag} urls={this.state.photoUrls} />
+                            }
+                        }
+                        }/>
                     </Switch>
                 </div>
             );

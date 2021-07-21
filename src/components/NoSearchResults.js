@@ -7,7 +7,7 @@ function NoSearchResults() {
     }
 
     return (
-        <h1 className="no-results">No Images Found</h1>
+        <h1 className="no-results">No Images Found. Please try again!</h1>
     )
 }
 
